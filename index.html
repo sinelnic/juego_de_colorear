@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>🎨 Juego de Colorear Imágenes</title>
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        /* Logo del juego */
+        #logo {
+            margin: 20px 0;
+        }
+        /* Estilos para la paleta de colores y la imagen */
+        #colorPalette {
+            margin-bottom: 20px;
+        }
+        .color-swatch {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            margin: 2px;
+            cursor: pointer;
+            border: 1px solid #000;
+        }
+        .active-color {
+            border: 3px solid #000;
+        }
+        svg path, svg rect, svg circle, svg polygon, svg ellipse, svg line {
+            cursor: pointer;
+            stroke: #000;
+            stroke-width: 1;
+        }
+        /* Estilos para las categorías */
+        #categories {
+            margin-bottom: 20px;
+        }
+        .category-button {
+            margin: 5px;
+            cursor: pointer;
+            padding: 10px 15px;
+            background-color: #f0f0f0;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .active-category {
+            background-color: #ddd;
+            font-weight: bold;
+        }
+        .hidden {
+            display: none;
+        }
+        /* Contenedor de la imagen */
+        #imagenes {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Logo del juego -->
+    <div id="logo">
+        <h1>🎨 Juego de Colorear Imágenes</h1>
+    </div>
+
+    <!-- Categorías -->
+    <div id="categories">
+        <button class="category-button active-category" data-category="casa">Casa</button>
+        <button class="category-button" data-category="flores">Flores</button>
+        <button class="category-button" data-category="animales">Animales</button>
+    </div>
+
+    <!-- Paletas de colores -->
+    <div id="colorPalette">
+        <!-- Paleta de colores cálidos -->
+        <div>
+            <strong>Colores Cálidos:</strong>
+            <div class="color-swatch" data-color="#FF5733" style="background-color: #FF5733;"></div>
+            <div class="color-swatch" data-color="#FF8D1A" style="background-color: #FF8D1A;"></div>
+            <div class="color-swatch" data-color="#FFC300" style="background-color: #FFC300;"></div>
+            <div class="color-swatch" data-color="#FFD700" style="background-color: #FFD700;"></div>
+            <div class="color-swatch" data-color="#FFB6C1" style="background-color: #FFB6C1;"></div>
+        </div>
+        <!-- Paleta de colores fríos -->
+        <div>
+            <strong>Colores Fríos:</strong>
+            <div class="color-swatch" data-color="#3498DB" style="background-color: #3498DB;"></div>
+            <div class="color-swatch" data-color="#5DADE2" style="background-color: #5DADE2;"></div>
+            <div class="color-swatch" data-color="#1ABC9C" style="background-color: #1ABC9C;"></div>
+            <div class="color-swatch" data-color="#48C9B0" style="background-color: #48C9B0;"></div>
+            <div class="color-swatch" data-color="#AF7AC5" style="background-color: #AF7AC5;"></div>
+        </div>
+        <!-- Paleta de colores neutros -->
+        <div>
+            <strong>Colores Neutros:</strong>
+            <div class="color-swatch" data-color="#FFFFFF" style="background-color: #FFFFFF;"></div>
+            <div class="color-swatch" data-color="#BDC3C7" style="background-color: #BDC3C7;"></div>
+            <div class="color-swatch" data-color="#7F8C8D" style="background-color: #7F8C8D;"></div>
+            <div class="color-swatch" data-color="#2C3E50" style="background-color: #2C3E50;"></div>
+            <div class="color-swatch" data-color="#8B4513" style="background-color: #8B4513;"></div>
+        </div>
+    </div>
+
+    <!-- Contenedor de imágenes -->
+    <div id="imagenes">
+        <!-- Categoría Casa -->
+        <svg id="casa" class="imagen-categoria" width="400" height="400" viewBox="0 0 200 200">
+            <!-- Casa detallada -->
+            <polygon id="techo" points="50,60 150,60 100,20" fill="#d3d3d3"></polygon>
+            <rect id="cuerpo" x="50" y="60" width="100" height="100" fill="#f0f0f0"></rect>
+            <rect id="puerta" x="90" y="110" width="20" height="50" fill="#a0522d"></rect>
+            <rect id="ventana1" x="60" y="80" width="20" height="20" fill="#add8e6"></rect>
+            <rect id="ventana2" x="120" y="80" width="20" height="20" fill="#add8e6"></rect>
+            <line x1="70" y1="80" x2="70" y2="100" stroke="#000" stroke-width="1"></line>
+            <line x1="60" y1="90" x2="80" y2="90" stroke="#000" stroke-width="1"></line>
+            <line x1="130" y1="80" x2="130" y2="100" stroke="#000" stroke-width="1"></line>
+            <line x1="120" y1="90" x2="140" y2="90" stroke="#000" stroke-width="1"></line>
+            <rect id="chimenea" x="130" y="30" width="10" height="30" fill="#b22222"></rect>
+            <ellipse id="sol" cx="30" cy="30" rx="15" ry="15" fill="#ffeb3b"></ellipse>
+            <circle id="nube1" cx="160" cy="40" r="10" fill="#fff"></circle>
+            <circle id="nube2" cx="170" cy="35" r="12" fill="#fff"></circle>
+            <circle id="nube3" cx="180" cy="40" r="10" fill="#fff"></circle>
+            <!-- Añadir más detalles si se desea -->
+        </svg>
+
+        <!-- Categoría Flores (oculta por defecto) -->
+        <svg id="flores" class="imagen-categoria hidden" width="400" height="400" viewBox="0 0 200 200">
+            <!-- Flores detalladas -->
+            <!-- Flor 1 -->
+            <circle id="centroFlor1" cx="50" cy="150" r="10" fill="#FFD700"></circle>
+            <path id="petalosFlor1" d="M50,140 L55,145 L60,140 L65,145 L70,140 L65,155 L70,160 L65,165 L60,160 L55,165 L50,160 L45,165 L40,160 L45,155 L40,140 L45,145 Z" fill="#FF69B4"></path>
+            <!-- Flor 2 -->
+            <circle id="centroFlor2" cx="150" cy="150" r="10" fill="#FFD700"></circle>
+            <ellipse id="petalosFlor2" cx="150" cy="150" rx="15" ry="30" fill="#BA55D3"></ellipse>
+            <!-- Añadir más flores si se desea -->
+        </svg>
+
+        <!-- Categoría Animales (oculta por defecto) -->
+        <svg id="animales" class="imagen-categoria hidden" width="400" height="400" viewBox="0 0 200 200">
+            <!-- Animales detallados -->
+            <!-- Gato -->
+            <circle id="cabezaGato" cx="100" cy="70" r="20" fill="#d3d3d3"></circle>
+            <polygon id="orejaIzquierdaGato" points="85,60 80,45 95,55" fill="#d3d3d3"></polygon>
+            <polygon id="orejaDerechaGato" points="115,60 120,45 105,55" fill="#d3d3d3"></polygon>
+            <ellipse id="cuerpoGato" cx="100" cy="130" rx="40" ry="60" fill="#c0c0c0"></ellipse>
+            <circle id="ojoIzquierdoGato" cx="93" cy="70" r="3" fill="#000"></circle>
+            <circle id="ojoDerechoGato" cx="107" cy="70" r="3" fill="#000"></circle>
+            <line x1="100" y1="75" x2="100" y2="85" stroke="#000" stroke-width="1"></line>
+            <!-- Añadir más detalles o animales si se desea -->
+        </svg>
+    </div>
+
+    <script>
+        // Variables globales
+        let selectedColor = '#FF5733'; // Color por defecto
+
+        // Manejar la selección de color
+        const colorSwatches = document.querySelectorAll('.color-swatch');
+        colorSwatches.forEach(swatch => {
+            swatch.addEventListener('click', () => {
+                selectedColor = swatch.getAttribute('data-color');
+                // Resaltar el color seleccionado
+                colorSwatches.forEach(cs => cs.classList.remove('active-color'));
+                swatch.classList.add('active-color');
+            });
+        });
+
+        // Seleccionar el primer color por defecto
+        document.querySelector('.color-swatch').click();
+
+        // Manejar el cambio de categorías
+        const categoryButtons = document.querySelectorAll('.category-button');
+        const imagenes = document.querySelectorAll('.imagen-categoria');
+
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const category = button.getAttribute('data-category');
+                // Actualizar botones activos
+                categoryButtons.forEach(btn => btn.classList.remove('active-category'));
+                button.classList.add('active-category');
+                // Mostrar la imagen correspondiente
+                imagenes.forEach(img => {
+                    if (img.id === category) {
+                        img.classList.remove('hidden');
+                    } else {
+                        img.classList.add('hidden');
+                    }
+                });
+                // Añadir eventos de clic a las nuevas partes
+                addEventListenersToParts();
+            });
+        });
+
+        // Añadir eventos de clic a las partes coloreables
+        function addEventListenersToParts() {
+            const visibleImage = document.querySelector('.imagen-categoria:not(.hidden)');
+            const parts = visibleImage.querySelectorAll('path, rect, circle, polygon, ellipse, line');
+            parts.forEach(part => {
+                part.addEventListener('click', () => {
+                    part.setAttribute('fill', selectedColor);
+                });
+            });
+        }
+
+        // Inicializar eventos para la categoría por defecto
+        addEventListenersToParts();
+    </script>
+
+</body>
+</html>
